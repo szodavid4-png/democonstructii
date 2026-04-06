@@ -690,12 +690,21 @@
       }
     });
   }, { threshold: 0.1 });
-  cards.forEach((card, i) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(40px)';
-    card.style.transition = `all 0.8s cubic-bezier(0.23,1,0.32,1) ${i * 0.15}s`;
-    observer.observe(card);
-  });
+
+cards.forEach((card, i) => {
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(40px)';
+  card.style.transition = `all 0.8s cubic-bezier(0.23,1,0.32,1) ${i * 0.15}s`;
+  observer.observe(card);
+});
+
+// 🔧 FORCE START TOP (fix scroll automat la recenzii)
+window.addEventListener('load', () => {
+  if (window.location.hash) {
+    history.replaceState(null, null, ' ');
+  }
+  window.scrollTo(0, 0);
+});
 </script>
 </body>
 </html>

@@ -641,55 +641,18 @@
 <div class="toast" id="toast">Solicitarea a fost trimisă cu succes!</div>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  function handleSubmit(event) {
+    event.preventDefault();
 
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-  });
-
-  const navToggle = document.getElementById('navToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  navToggle.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
-  });
-  document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
-  });
-
-  const heroBg = document.getElementById('heroBg');
-  window.addEventListener('scroll', () => {
-    heroBg.style.transform = `translateY(${window.scrollY * 0.25}px) scale(1.1)`;
-  });
-
-  function handleSubmit(e) {
-    e.preventDefault();
     document.getElementById('contactForm').style.display = 'none';
     document.getElementById('formSuccess').classList.add('show');
-    showToast('Solicitarea a fost trimisă cu succes!');
-  }
 
-  function showToast(msg) {
     const toast = document.getElementById('toast');
-    toast.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 4000);
+    if (toast) {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
   }
-
-  const cards = document.querySelectorAll('.service-card');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
-  cards.forEach((card, i) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(40px)';
-    card.style.transition = `all 0.8s cubic-bezier(0.23,1,0.32,1) ${i * 0.15}s`;
-    observer.observe(card);
-  });
 </script>
 </body>
 </html>
